@@ -1,23 +1,25 @@
-# Frontend/Dockerfile
-
+# Base image
 FROM python:3.10.8
 
-RUN mkdir -p app/frontend
-RUN pip install altair
+# Create application directory
+RUN mkdir -p /app/frontend
 
-
-COPY Streamlit_Frontend app/frontend
-
+# Set the working directory
 WORKDIR /app/frontend
 
+# Copy the Streamlit frontend files to the container
+COPY Streamlit_Frontend/ .
+
+# Upgrade pip and install required packages
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
-RUN pip install --upgrade pip
-RUN pip install setuptools
-RUN pip install distutils
+
+# Install Streamlit
+RUN pip install streamlit
+RUN ./setup.sh
+# Expose the Streamlit port
 EXPOSE 8501
 
-ENTRYPOINT ["streamlit","run"]
-
+# Command to run the Streamlit app
+ENTRYPOINT ["streamlit", "run"]
 CMD ["Hello.py"]
-
