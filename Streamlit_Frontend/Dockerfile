@@ -1,5 +1,5 @@
 # Base image
-FROM python:3.10.8
+FROM python:3.12
 
 # Create application directory
 RUN mkdir -p /app/frontend
