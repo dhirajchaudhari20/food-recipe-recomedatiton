@@ -12,6 +12,8 @@ WORKDIR /app/frontend
 
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
+RUN pip install --upgrade pip
+RUN pip install setuptools
 
 EXPOSE 8501
 
